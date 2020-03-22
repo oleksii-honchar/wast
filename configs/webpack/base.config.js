@@ -9,23 +9,19 @@ console.log("[config:webpack:snippet] 'Base' loaded");
 const pkg = require("../../package.json");
 
 module.exports = (env) => {
-  console.log(`[config:webpack:snippet] 'Base' processing`);
+  console.log(`[config:webpack:snippet] 'Base' processing config`);
 
   return {
+    name: "test",
     mode: process.env.NODE_ENV,
     cache: true,
+    target: "node",
     devtool: process.env.NODE_ENV === "production" ? false : "inline-source-map",
-    devServer: {
-      port: process.env.SERVE_PORT,
-      contentBase: path.join(__dirname, "../../dist"),
-      publicPath: "/assets/",
-      writeToDisk: true,
-    },
     entry: {
-      app: "./src/index.tsx"
+      app: './src/index.ts',
     },
     resolve: {
-      extensions: [".js", ".jsx", ".html", ".ts", ".tsx", ".mjs"],
+      extensions: [".js", ".ts", ".tsx"],
         modules: [
         "src",
         "node_modules",
@@ -40,23 +36,14 @@ module.exports = (env) => {
     output: {
       path: path.join(__dirname, "../../dist"),
       filename: `[name].bundle.js`,
-      chunkFilename: `[name].bundle.js`,
       sourceMapFilename: `[name].map`,
-      publicPath: "/assets/",
+      publicPath: "/",
     },
     plugins: [
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1
       }),
       new LodashModuleReplacementPlugin(),
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-          LOG_LEVEL: JSON.stringify(process.env.LOG_LEVEL),
-          PKG_NAME: JSON.stringify(pkg.name),
-          PKG_VERSION: JSON.stringify(pkg.version)
-        },
-      }),
       new CopyWebpackPlugin([
         {
           from: "./src/assets",
@@ -65,7 +52,18 @@ module.exports = (env) => {
         }
       ])
     ],
-    // node: false,
+    node: {
+      fs: 'empty',
+      global: true,
+      crypto: 'empty',
+      process: true,
+      console: true,
+      module: false,
+      clearImmediate: false,
+      setImmediate: false,
+      __dirname: false,
+      __filename: false
+    },
     watchOptions: {
       aggregateTimeout: 3000,
     }

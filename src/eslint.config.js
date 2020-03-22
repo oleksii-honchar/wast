@@ -1,1 +1,1 @@
-require('../configs/eslint.config');
+require('./configs/eslint.config');

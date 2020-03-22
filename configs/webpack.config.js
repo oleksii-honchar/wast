@@ -20,11 +20,6 @@ module.exports = (env) => {
 
   let cfg = baseCfg(env);
   cfg = webpackMerge(cfg, moduleCfg(env));
-  cfg = webpackMerge(cfg, {
-    entry: {
-      app: "./src/index.tsx"
-    }
-  });
 
   if (env.BUILD_ANALYZE === 'true') {
     console.log('[config:webpack] bundle analyzer included');
@@ -37,11 +32,11 @@ module.exports = (env) => {
   if (process.env.NODE_ENV !== 'production') {
     console.log('[config:webpack] config composition completed');
 
-    return [ cfg ];
+    return cfg;
   }
 
-  cfg = webpackMerge(cfg, prodCfg);
+  config = webpackMerge(cfg, prodCfg);
 
   console.log('[config:webpack] config composition completed');
-  return cfg;
+  return config;
 }

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 envFile="$PWD/configs/envs/local.env"
-env-cmd -f $envFile "$PWD/devops/local/scripts/check-env-vars.sh"
+npx env-cmd -f $envFile "$PWD/devops/local/scripts/check-env-vars.sh"
 
 source $envFile
 
-env-cmd -f $envFile \
-    webpack \
+npx env-cmd -f $envFile \
+    node --inspect-brk node_modules/webpack/bin/webpack.js \
         --config ./configs/webpack.config.js \
         --mode development \
         --env.BUILD_ANALYZE=$BUILD_ANALYZE

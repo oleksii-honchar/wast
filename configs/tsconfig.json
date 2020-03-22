@@ -4,44 +4,43 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "..",
     "declaration": false,
+    "diagnostics": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": false,
     "importHelpers": true,
-    "jsx": "react",
     "lib": [
       "dom",
-      "esnext"
+      "es6"
     ],
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "lf",
     "noEmit": true,
     "noImplicitAny": true,
     "noStrictGenericChecks": true,
     "paths": {
-      "src/*": [ "src/*" ]
+      "src/*": [ "src/*" ],
+      "package.json": ["../package.json"]
     },
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "pretty": true,
+    "resolveJsonModule": true,
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
+    "suppressExcessPropertyErrors": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "ES2020",
+    "target": "es5",
     "typeRoots": [
       "../node_modules/@types",
       "../src/typings"
     ]
   },
-  "files": [
-    "index.tsx"
-  ],
   "include": [
     "../src/**/*"
   ],
   "exclude": [
     "../node_modules",
-    "./",
+    "../configs",
     "../dist",
     "../docs",
     "../coverage",

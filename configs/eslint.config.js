@@ -5,7 +5,7 @@ module.exports = {
   parserOptions: {
     allowImportExportEverywhere: false,
     codeFrame: false,
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     errorOnUnknownASTType: true,
     errorOnTypeScriptSyntacticAndSemanticIssues: true,
     project: "tsconfig.json",
@@ -13,8 +13,9 @@ module.exports = {
   },
   extends: [
     "plugin:@typescript-eslint/recommended",
+    "plugin:node/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
+    "plugin:prettier/recommended"
   ],
   rules: {
     "@typescript-eslint/no-unused-vars": "off",
@@ -24,8 +25,8 @@ module.exports = {
       "error",
       "consistent",
     ],
-    "import/prefer-default-export": "off",
-    "import/no-unresolved": "error",
+    // "import/prefer-default-export": "off",
+    // "import/no-unresolved": "error",
     "max-len": [
       "error",
       {
@@ -42,7 +43,6 @@ module.exports = {
     "quote-props": ["error", "consistent-as-needed"]
   },
   env: {
-    browser: true,
     node: true,
     es6: true
   },
@@ -68,5 +68,5 @@ module.exports = {
         directory: "./configs/tsconfig.json"
       }
     }
-  },
+  }
 };
