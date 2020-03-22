@@ -1,0 +1,90 @@
+{
+  "name": "wast",
+  "version": "0.1.0",
+  "description": "Web App STatic server",
+  "author": "Oleksii Honchar",
+  "main": "src/index.tsx",
+  "scripts": {
+    "prebuild:loc": "npm run clean:dist",
+    "prebuild": "npm run clean:dist",
+    "build": "bash scripts/build.sh",
+    "build:analyze": "cross-env-shell BUILD_ANALYZE=true bash scripts/build.sh",
+    "build:loc": "bash scripts/build.loc.sh",
+    "build:loc:analyze": "cross-env-shell BUILD_ANALYZE=true bash scripts/build.loc.sh",
+    "cm": "npx git-cz",
+    "check:all": "run-p lint:fix types:check",
+    "clean:dist": "rm -rf dist",
+    "devops:chmod-scripts": "bash devops/local/scripts/chmod-scripts.sh",
+    "launch:loc": "run-p launch:dev-server types:watch",
+    "launch:dev-server": "bash scripts/launch.dev-server.sh",
+    "lint": "npx eslint src --config ./configs/eslint.config.js  --ext .ts,.tsx,.json --ignore-pattern '/node_modules/*' --ignore-pattern '**/*.d.ts' --ignore-pattern '**/*.spec.ts' --ignore-pattern '/src/assets/**'",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "npm run launch:loc",
+    "types:check": "tsc -p tsconfig.json",
+    "types:watch": "npm run types:check -- --watch",
+    "watch": "run-p types:watch watch:loc",
+    "watch:loc": "bash scripts/watch.loc.sh"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check:all",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS --config=./configs/commitlint.config.js"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "license": "MIT",
+  "dependencies": {
+    "env-cmd": "10.1.0",
+    "npm-run-all": "4.1.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
+    "@types/express": "4.17.3",
+    "@types/lodash": "4.14.149",
+    "@types/node": "13.9.3",
+    "@types/uuid": "7.0.0",
+    "@typescript-eslint/eslint-plugin": "2.22.0",
+    "@typescript-eslint/parser": "2.22.0",
+    "commitizen": "4.0.3",
+    "compression-webpack-plugin": "3.1.0",
+    "copy-webpack-plugin": "5.1.1",
+    "cross-env": "7.0.2",
+    "cz-conventional-changelog": "3.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-config-standard": "14.1.0",
+    "eslint-config-standard-preact": "1.1.6",
+    "eslint-import-resolver-typescript": "2.0.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-json": "2.1.0",
+    "eslint-plugin-node": "11.0.0",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "file-loader": "5.1.0",
+    "husky": "4.2.3",
+    "lodash": "4.17.15",
+    "lodash-webpack-plugin": "0.11.5",
+    "prettier": "1.19.1",
+    "rimraf": "3.0.2",
+    "source-map-loader": "0.2.4",
+    "to-string-loader": "1.1.6",
+    "toobusy-js": "^0.5.1",
+    "ts-loader": "6.2.1",
+    "tsconfig-paths-webpack-plugin": "3.2.0",
+    "typescript": "3.8.3",
+    "webpack": "4.42.0",
+    "webpack-bundle-analyzer": "3.6.0",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3",
+    "webpack-merge": "4.2.2"
+  },
+  "engines": {
+    "node": "13"
+  }
+}

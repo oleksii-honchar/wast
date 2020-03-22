@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "..",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": false,
+    "importHelpers": true,
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noStrictGenericChecks": true,
+    "paths": {
+      "src/*": [ "src/*" ]
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "ES2020",
+    "typeRoots": [
+      "../node_modules/@types",
+      "../src/typings"
+    ]
+  },
+  "files": [
+    "index.tsx"
+  ],
+  "include": [
+    "../src/**/*"
+  ],
+  "exclude": [
+    "../node_modules",
+    "./",
+    "../dist",
+    "../docs",
+    "../coverage",
+    "../devops"
+  ]
+}
